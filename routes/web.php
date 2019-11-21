@@ -14,11 +14,23 @@
 Route::get('/', function () {
     return view('welcome');
 });
+/**
+ * Authentication
+ */
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+/**
+ * OAuth(OpenAuthentication)
+ */
 Route::get('/oauth/google', 'OAuthController@redirectToProvider');
 Route::get('/oauth/callback', 'OAuthController@handleProviderCallback');
+
+/**
+ * courses
+ */
+Route::get('/courses/create', 'CourseController@createForm')->name('courses.create');
+Route::post('/courses/create', 'CourseController@store');
+
 
