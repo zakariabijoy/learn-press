@@ -80,6 +80,10 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('Register') }}
                                 </button>
+
+                                <a href="/oauth/google" type="submit" class="btn btn-primary">
+                                    {{ __('Google') }}
+                                </a>
                             </div>
                         </div>
                     </form>

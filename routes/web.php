@@ -18,3 +18,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/oauth/google', 'OAuthController@redirectToProvider');
+Route::get('/oauth/callback', 'OAuthController@handleProviderCallback');
+
