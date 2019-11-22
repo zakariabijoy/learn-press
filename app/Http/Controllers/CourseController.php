@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Course;
+use App\User;
+use App\Notifications\NewCourseAdded;
 
 class CourseController extends Controller
 {
@@ -27,6 +29,12 @@ class CourseController extends Controller
             'author_id' => auth()->user()->id
 
         ]);
+
+        $users = User::where("id", "!=", auth()->user()->id)->get();
+
+        foreach ($users as $user) {
+            $user->notify(new NewCourseAdded);
+        }
             return back()->with('success', 'Course Created');
         
     }
