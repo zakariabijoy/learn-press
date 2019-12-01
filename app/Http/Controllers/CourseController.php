@@ -46,4 +46,10 @@ class CourseController extends Controller
             return back()->with('success', 'Course Created');
         
     }
+
+    public  function list(){
+        $courses = Course::paginate(2);
+
+        return view('courses.list', compact('courses'));
+    }
 }
