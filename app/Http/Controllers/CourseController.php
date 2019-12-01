@@ -7,8 +7,10 @@ use App\Course;
 use App\User;
 use App\Notifications\NewCourseAdded;
 
+
 class CourseController extends Controller
 {
+   
     public function createForm(){
         return view('courses.create');
     }
@@ -17,15 +19,21 @@ class CourseController extends Controller
         $request->validate([
             'name' => 'required|max:150',
             'description' => 'required',
-            'price' => 'required|numeric'
+            'price' => 'required|numeric',
+            'image' => 'required|mimes:jpeg,jpg,bmp,png|max:2048'
 
+        ],[
+            'image.max' => "this image may not be greater than 2 mb"
         ]);
+
+        $fileName = $request->file('image')->getClientOriginalName();
+         $request->file('image')->storeAs("/public/image",$fileName);
 
         Course::create([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'price' => $request->input('price'),
-            'image' => '/image',
+            'image' => $fileName,
             'author_id' => auth()->user()->id
 
         ]);

@@ -21,7 +21,7 @@
                     </div>
                 @endif
 
-                <form method="POST">
+                <form method="POST" enctype="multipart/form-data">
                     @csrf
 
                     <div class="form-group">
@@ -39,7 +39,10 @@
                         <input class="form-control" type="number" name="price">
                     </div>
 
-                    <!-- image will be here.. -->
+                    <div class="form-group">
+                             <label for="image">Image:</label>
+                        <input class="" type="file" name="image">
+                    </div>
 
                     <input class="btn btn-primary" style="float:right" type="submit" name="Create Your Course">
                    
