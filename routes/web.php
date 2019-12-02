@@ -30,8 +30,8 @@ Route::get('/oauth/callback', 'OAuthController@handleProviderCallback');
 /**
  * courses
  */
-Route::get('/courses/create', 'CourseController@createForm')->name('courses.create');
-Route::post('/courses/create', 'CourseController@store');
+Route::get('/courses/create', 'CourseController@createForm')->name('courses.create')->middleware('auth');
+Route::post('/courses/create', 'CourseController@store')->middleware('auth');
 
 Route::get('/courses', 'CourseController@list')->name('courses.list');
 

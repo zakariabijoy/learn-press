@@ -6,12 +6,16 @@ use Illuminate\Http\Request;
 use App\Course;
 use App\User;
 use App\Notifications\NewCourseAdded;
+use Illuminate\Support\Facades\Cache;
+
 
 
 class CourseController extends Controller
 {
+    
    
     public function createForm(){
+        
         return view('courses.create');
     }
 
@@ -48,7 +52,12 @@ class CourseController extends Controller
     }
 
     public  function list(){
-        $courses = Course::paginate(2);
+
+        $courses= Cache::remember('courses.list', 5, function(){
+            return Course::paginate(10);
+        });
+
+       // $courses= Course::paginate(2);
 
         return view('courses.list', compact('courses'));
     }

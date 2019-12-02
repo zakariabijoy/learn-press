@@ -36,6 +36,9 @@
                         <li class="nav-item nav-link">
                             <a  href="{{ route('courses.list')}}">Courses</a>
                         </li>
+                        <li class="nav-item nav-link">
+                            <a  href="{{ route('courses.create')}}">Add Course</a>
+                        </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
