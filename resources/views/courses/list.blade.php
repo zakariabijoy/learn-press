@@ -5,7 +5,7 @@
     <div class="row">
         @foreach($courses as $course)
         <div class="col-md-4 ">
-            <a href="{{route('courses.playlist')}}" class="nav-link">
+            <a href="{{route('courses.playlist',$course->id )}}" class="nav-link">
         <div class = "card" >
             
             <img height=150 src="/storage/image/{{$course->image}}" class="card-img-top" alt="...">

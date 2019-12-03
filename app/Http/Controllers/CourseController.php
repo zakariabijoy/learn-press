@@ -20,6 +20,7 @@ class CourseController extends Controller
         return view('courses.create');
     }
 
+
     public function store(Request $request){
         $request->validate([
             'name' => 'required|max:150',
@@ -62,6 +63,8 @@ class CourseController extends Controller
             ]);
         }
 
+        cache::clear();
+
         $users = User::where("id", "!=", auth()->user()->id)->get();
 
         foreach ($users as $user) {
@@ -71,16 +74,27 @@ class CourseController extends Controller
         
     }
 
+
+
     public  function list(){
 
         $page= request()->input('page');
 
-        $courses= Cache::remember('courses.list'.$page, 5, function(){
+        $courses= Cache::remember('courses.list'.$page, 60, function(){
             return Course::paginate(9);
         });
 
        // $courses= Course::paginate(2);
 
         return view('courses.list', compact('courses'));
+    }
+
+
+    public function showPlaylist($course_id){
+
+        $videos = Video::where("course_id","=",$course_id)->get();
+
+        return view('courses.playlist', compact('videos'));
+
     }
 }

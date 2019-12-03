@@ -33,9 +33,10 @@ Route::get('/oauth/callback', 'OAuthController@handleProviderCallback');
 Route::get('/courses/create', 'CourseController@createForm')->name('courses.create')->middleware('auth');
 Route::post('/courses/create', 'CourseController@store')->middleware('auth');
 
+
 Route::get('/courses', 'CourseController@list')->name('courses.list');
 
-Route::get('/courses/playlist', 'CourseController@addToPlaylist')->name('courses.playlist');
+Route::get('/courses/playlist/{course_id}', 'CourseController@showPlaylist')->name('courses.playlist');
 
 
 
