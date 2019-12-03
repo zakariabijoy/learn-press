@@ -43,6 +43,10 @@
                              <label for="image">Image:</label>
                         <input class="" type="file" name="image">
                     </div>
+                    <div class="form-group">
+                        <label for="videos">Videos:</label>
+                        <input class="" type="file" name="videos" multiple>
+                    </div>
 
                     <input class="btn btn-primary" style="float:right" type="submit" name="Create Your Course">
                    

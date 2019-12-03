@@ -53,8 +53,10 @@ class CourseController extends Controller
 
     public  function list(){
 
-        $courses= Cache::remember('courses.list', 5, function(){
-            return Course::paginate(10);
+        $page= request()->input('page');
+
+        $courses= Cache::remember('courses.list'.$page, 5, function(){
+            return Course::paginate(9);
         });
 
        // $courses= Course::paginate(2);

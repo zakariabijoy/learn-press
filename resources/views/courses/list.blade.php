@@ -4,9 +4,11 @@
 
     <div class="row">
         @foreach($courses as $course)
-        <div class="col-md-4">
-        <div class = "card"   >
-            <img  src="/storage/image/{{$course->image}}" class="card-img-top" alt="...">
+        <div class="col-md-4 ">
+            <a href="{{route('courses.playlist')}}" class="nav-link">
+        <div class = "card" >
+            
+            <img height=150 src="/storage/image/{{$course->image}}" class="card-img-top" alt="...">
 
             <div class="card-body">
                 
@@ -16,6 +18,7 @@
             </div>
 
         </div>
+        </a>
         </div>
         @endforeach
     </div>

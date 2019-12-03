@@ -35,3 +35,8 @@ Route::post('/courses/create', 'CourseController@store')->middleware('auth');
 
 Route::get('/courses', 'CourseController@list')->name('courses.list');
 
+Route::get('/courses/playlist', 'CourseController@addToPlaylist')->name('courses.playlist');
+
+
+
+
