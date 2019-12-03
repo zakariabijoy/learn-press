@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Course;
+use App\Video;
 use App\User;
 use App\Notifications\NewCourseAdded;
 use Illuminate\Support\Facades\Cache;
@@ -24,16 +25,22 @@ class CourseController extends Controller
             'name' => 'required|max:150',
             'description' => 'required',
             'price' => 'required|numeric',
-            'image' => 'required|mimes:jpeg,jpg,bmp,png|max:2048'
+            'image' => 'required|mimes:jpeg,jpg,bmp,png|max:2048',
+            'videos.*' => 'required|mimes:mp4,3gpp|max:200000'
+
 
         ],[
-            'image.max' => "this image may not be greater than 2 mb"
+            'image.max' => "this image may not be greater than 2 mb",
+            'videos.max' => "this image may not be greater than 200 mb"
+
         ]);
+
+        
 
         $fileName = $request->file('image')->getClientOriginalName();
          $request->file('image')->storeAs("/public/image",$fileName);
 
-        Course::create([
+        $courses = Course::create([
             'name' => $request->input('name'),
             'description' => $request->input('description'),
             'price' => $request->input('price'),
@@ -41,6 +48,19 @@ class CourseController extends Controller
             'author_id' => auth()->user()->id
 
         ]);
+
+        foreach ($request->file('videos') as $file ) {
+            $fileName = $file->getClientOriginalName();
+
+            $file->storeAs("/public/videos",$fileName);
+
+            //database insert
+
+            Video::create([
+                'course_id' => $courses->id,
+                'file_name' =>$fileName
+            ]);
+        }
 
         $users = User::where("id", "!=", auth()->user()->id)->get();
 
