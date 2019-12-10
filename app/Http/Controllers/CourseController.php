@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Cache;
 
 
 
+
 class CourseController extends Controller
 {
     
@@ -92,9 +93,26 @@ class CourseController extends Controller
 
     public function showPlaylist($course_id){
 
+        $user = auth()->user();
+        $course = $user->courses()->whereId($course_id)->firstOrFail();
+
         $videos = Video::where("course_id","=",$course_id)->get();
 
         return view('courses.playlist', compact('videos'));
 
     }
+
+    public function enroll($id){
+
+
+        $course = Course::findOrFail($id);
+
+        $course->users()->attach(auth()->user()->id);
+
+        return redirect()->route('courses.playlist',$id)->with('success', "you are successfully enrolled  for this course ");
+       //  return view('courses.enroll');
+       
+    }
+
+  
 }

@@ -36,7 +36,11 @@ Route::post('/courses/create', 'CourseController@store')->middleware('auth');
 
 Route::get('/courses', 'CourseController@list')->name('courses.list');
 
-Route::get('/courses/playlist/{course_id}', 'CourseController@showPlaylist')->name('courses.playlist');
+Route::get('/courses/playlist/{course_id}', 'CourseController@showPlaylist')->name('courses.playlist')->middleware('auth');
+
+Route::post('/courses/{id}/enroll', 'CourseController@enroll')->name('courses.enroll')->middleware('auth');
+
+
 
 
 

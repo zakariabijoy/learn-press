@@ -16,6 +16,10 @@
                 <p class="card-text">{{$course->description}}</p>
                 
             </div>
+            <form action="{{route('courses.enroll', ['id'=> $course->id])}}" method="post">
+                @csrf
+                <button class="btn btn-primary" type="submit">Enroll!!</button>
+            </form>
 
         </div>
         </a>

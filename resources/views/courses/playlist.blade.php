@@ -2,7 +2,11 @@
 
 @section('content')
 
-        <div class=row>
+@if(session('success'))
+<div class="alert alert-success">
+    <p>{{session('success')}}</p>
+</div>
+@endif
         @foreach($videos as $video)
     
          
