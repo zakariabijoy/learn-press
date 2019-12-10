@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Course;
 use App\Video;
 use App\User;
+use App\Comment;
 use App\Notifications\NewCourseAdded;
 use Illuminate\Support\Facades\Cache;
 
@@ -98,7 +99,9 @@ class CourseController extends Controller
 
         $videos = Video::where("course_id","=",$course_id)->get();
 
-        return view('courses.playlist', compact('videos'));
+        $comments = Comment::where("course_id","=",$course_id)->orderBy('id', 'DESC')->get();
+
+        return view('courses.playlist', compact('videos','comments'),['course_id'=>$course_id]);
 
     }
 
@@ -114,5 +117,24 @@ class CourseController extends Controller
        
     }
 
-  
+    public function comment(Request $request,$id){
+        $request->validate([
+            'comment'=>'required'
+        ]);
+
+        Comment::create([
+            'comment'=> $request->input('comment'),
+            'user_id'=>auth()->user()->id,
+            'course_id'=>$id
+
+        ]);
+
+        return back()->with('success',"your comment id added");
+    }
+
+//   public function commentShow(){
+//       $comments = Course::find()->comments;
+
+//       return back()->with(compact('comments'));
+//   }
 }

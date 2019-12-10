@@ -40,6 +40,11 @@ Route::get('/courses/playlist/{course_id}', 'CourseController@showPlaylist')->na
 
 Route::post('/courses/{id}/enroll', 'CourseController@enroll')->name('courses.enroll')->middleware('auth');
 
+Route::post('/courses/{id}/comment', 'CourseController@comment')->name('courses.comment')->middleware('auth');
+
+
+
+
 
 
 
