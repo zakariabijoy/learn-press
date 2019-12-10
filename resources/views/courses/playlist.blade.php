@@ -7,29 +7,24 @@
     <p>{{session('success')}}</p>
 </div>
 @endif
-        @foreach($videos as $video)
-    
-         
-            <div class="col-md-8 offset-2">
-                <div class="card mt-2">
-                    <a href="/storage/videos/{{$video->file_name}}">
-                    <div class="card-title">
-                        <h5>{{$video->file_name}}</h5>
-                    </div>
-                    </a>
-                </div>
-            </div>
-          
+
+        <div class="row">
             
-        <video width="320" height="240" control hidden>
-         <source src="/storage/videos/{{$video->file_name}}" type="video/mp4">
-        </video>
-           
-
-   
-
-        @endforeach
-        </div>  
-
+                @foreach($videos as $video)
+                <div class="card col-md-3 mr-lg-3">
+                    <div class="card-body">
+                        <video width="100%" height="100%" controls>
+                            <source src="/storage/videos/{{$video->file_name}}" type="video/mp4">
+                            
+                        </video>
+                    </div>
+                    <div class="card-title text-center">
+                        <strong >{{$video->file_name}}</strong>
+                    </div>
+                </div>
+                @endforeach
+            
+        </div>
+        
 
 @endsection
