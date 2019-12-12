@@ -1,6 +1,7 @@
 after git cloning a laravel project(for default gitignore file of a laravel project): 
 	#follow this link for setup and run the project:
 	https://devmarketer.io/learn/setup-laravel-project-cloned-github-com/
+    note: for this project you don't have to do this,cz i exclude everythings from gitigrone file. So just clone  and import database and run. :)
 
 
 <p align="center"><img src="https://res.cloudinary.com/dtfbvvkyp/image/upload/v1566331377/laravel-logolockup-cmyk-red.svg" width="400"></p>
