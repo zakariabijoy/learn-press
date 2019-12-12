@@ -99,6 +99,7 @@ class CourseController extends Controller
 
         $videos = Video::where("course_id","=",$course_id)->get();
 
+        // $commentss= $course->comments()->oderBy('id', 'DESC')->get();
         $comments = Comment::where("course_id","=",$course_id)->orderBy('id', 'DESC')->get();
 
         return view('courses.playlist', compact('videos','comments'),['course_id'=>$course_id]);
